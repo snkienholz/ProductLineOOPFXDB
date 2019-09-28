@@ -1,0 +1,76 @@
+.root {
+  -fx-font-family: Arial;
+}
+
+.tab-header-background {
+  -fx-background-color: #001c31;
+}
+
+AnchorPane {
+  -fx-background-color: #eeeeee;
+}
+
+.tab {
+  -fx-background-color: #00435b;
+}
+
+/* Setting color of focused tab to transparent to remove tab highlighting */
+.tab-pane:focused > .tab-header-area > .headers-region > .tab:selected .focus-indicator {
+  -fx-border-color: transparent;
+}
+
+.tab:selected {
+  -fx-background-color: #005c7d;
+}
+
+.tab-label {
+  -fx-text-fill: whitesmoke;
+  -fx-font-size: 14px;
+}
+
+.label {
+  -fx-font-size: 16px;
+  -fx-font-weight: bold;
+  -fx-text-fill: #001c31;
+}
+
+.button {
+  -fx-background-color: #ef534f;
+  -fx-text-fill: black;
+  -fx-border-style: hidden;
+  -fx-font-size: 16px;
+  -fx-font-weight: bold;
+}
+
+.button:hover {
+  -fx-background-color: #f5908d;
+}
+
+#tblExistingProducts > .label {
+  -fx-font-size: 16px;
+  -fx-font-weight: bold;
+  -fx-text-fill: #001c31;
+}
+
+#tblExistingProducts > .table-view {
+  -fx-font-size: 16px;
+  -fx-text-fill: #001c31;
+}
+
+#tblExistingProducts > .table-view .nested-column-header .label {
+  -fx-font-size: 16px;
+  -fx-text-fill: whitesmoke;
+}
+
+#tblExistingProducts > .table-view .column-header-background .nested-column-header .table-column {
+  -fx-font-size: 16px;
+  -fx-background-color: #00435b;
+}
+
+.table-view .column-header,
+.table-view .column-header .filler,
+.table-view .column-header-background .filler {
+  -fx-background-color: #001c31;
+}
+
+

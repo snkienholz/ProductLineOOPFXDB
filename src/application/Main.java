@@ -1,8 +1,7 @@
-package sample;
+package application;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javafx.application.Application;
@@ -25,9 +24,6 @@ public class Main extends Application {
 
   public static void main(String[] args) {
     launch(args);
-  }
-
-  {
 
     final String JDBC_DRIVER = "org.h2.Driver";
     final String DB_URL = "jdbc:h2:./res/Product";
@@ -56,7 +52,7 @@ public class Main extends Application {
       } */
 
       // STEP 4: Clean-up environment
-      stmt.close();
+      //stmt.close();
       conn.close();
     } catch (ClassNotFoundException | SQLException e) {
       e.printStackTrace();

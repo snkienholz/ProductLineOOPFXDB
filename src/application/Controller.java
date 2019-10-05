@@ -7,6 +7,7 @@ import java.sql.Statement;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
@@ -88,7 +89,7 @@ public class Controller {
   private TextField txtManufacturer;
 
   @FXML
-  private TextField txtChoiceBox;
+  private ChoiceBox<String> choiceItemType;
 
   @FXML
   private ComboBox<Integer> cboQuantity;

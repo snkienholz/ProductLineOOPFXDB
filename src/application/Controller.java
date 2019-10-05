@@ -24,12 +24,9 @@ public class Controller {
 
   private Statement stmt = null;
 
-  public enum ItemType {
-    AUDIO, VISUAL, AudioMobile, VisualMobile,
-    AU, VI, AM, VM
-  }
-
-  EnumSet<ItemType> types = EnumSet.range(ItemType.AUDIO, ItemType.VisualMobile);
+  // separated sets of ItemType enum, by Type and Code
+  private EnumSet<ItemType> types = EnumSet.range(ItemType.AUDIO, ItemType.VisualMobile);
+  private EnumSet<ItemType> codes = EnumSet.range(ItemType.AU, ItemType.VM);
 
   /**
    * Initializing connection to database.
@@ -91,9 +88,7 @@ public class Controller {
   @FXML
   private Tab productionLog;
 
-  /**
-   * Product Line text fields.
-   */
+  // Product Line text fields
   @FXML
   private TextField txtProductName;
 

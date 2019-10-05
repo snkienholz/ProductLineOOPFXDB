@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.EnumSet;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -21,8 +22,14 @@ import javafx.scene.layout.GridPane;
  */
 public class Controller {
 
-  private Connection conn = null;
   private Statement stmt = null;
+
+  public enum ItemType {
+    AUDIO, VISUAL, AudioMobile, VisualMobile,
+    AU, VI, AM, VM
+  }
+
+  EnumSet<ItemType> types = EnumSet.range(ItemType.AUDIO, ItemType.VisualMobile);
 
   /**
    * Initializing connection to database.
@@ -41,7 +48,7 @@ public class Controller {
       Class.forName(jdbcDriver);
 
       //STEP 2: Open a connection
-      conn = DriverManager.getConnection(dbUrl, user, pass);
+      Connection conn = DriverManager.getConnection(dbUrl, user, pass);
 
       //STEP 3: Execute a query
       stmt = conn.createStatement();
@@ -56,6 +63,11 @@ public class Controller {
     }
     cboQuantity.setEditable(true);
     cboQuantity.getSelectionModel().selectFirst();
+
+    // ChoiceBox
+    for (ItemType item : types) {
+      choiceItemType.getItems().add(String.valueOf(item));
+    }
   }
 
   @FXML

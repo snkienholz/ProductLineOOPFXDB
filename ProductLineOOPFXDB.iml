@@ -10,11 +10,11 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="file://$USER_HOME$/Downloads/H2/bin" />
+          <root url="file://$MODULE_DIR$/../H2/bin" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
-        <jarDirectory url="file://$USER_HOME$/Downloads/H2/bin" recursive="false" />
+        <jarDirectory url="file://$MODULE_DIR$/../H2/bin" recursive="false" />
       </library>
     </orderEntry>
   </component>

@@ -2,8 +2,8 @@ package application;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -21,7 +21,7 @@ import javafx.scene.layout.GridPane;
  */
 public class Controller {
 
-  private Statement stmt = null;
+  private Connection conn;
 
   /**
    * Initializing connection to database.
@@ -36,14 +36,9 @@ public class Controller {
     final String pass = "";
 
     try {
-      // STEP 1: Register JDBC driver
       Class.forName(jdbcDriver);
 
-      //STEP 2: Open a connection
-      Connection conn = DriverManager.getConnection(dbUrl, user, pass);
-
-      //STEP 3: Execute a query
-      stmt = conn.createStatement();
+      conn = DriverManager.getConnection(dbUrl, user, pass);
 
     } catch (ClassNotFoundException | SQLException e) {
       e.printStackTrace();
@@ -103,10 +98,16 @@ public class Controller {
    */
   @FXML
   void addProduct(ActionEvent event) {
-    String sql = "INSERT INTO Product(type, manufacturer, name) "
-        + "VALUES ('Audio', 'Apple', 'iPhone 11 Pro Max')";
+    String sql = "INSERT INTO Product(type, manufacturer, name) VALUES (?, ?, ?)";
     try {
-      stmt.executeUpdate(sql);
+      PreparedStatement preparedStatement = conn.prepareStatement(sql);
+
+      preparedStatement.setString(1, choiceItemType.getValue());
+      preparedStatement.setString(2, txtManufacturer.getText());
+      preparedStatement.setString(3, txtProductName.getText());
+
+      preparedStatement.executeUpdate();
+
     } catch (SQLException e) {
       // handle errors for JDBC
       e.printStackTrace();

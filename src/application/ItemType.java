@@ -2,6 +2,14 @@ package application;
 
 // Item pre-set types under Product Line tab
 public enum ItemType {
-  AUDIO, VISUAL, AudioMobile, VisualMobile,
-  AU, VI, AM, VM
+  Audio("AU"),
+  Visual("VI"),
+  AudioMobile("AM"),
+  VisualMobile("VM");
+
+  private final String code;
+
+  ItemType(String code) {
+    this.code = code;
+  }
 }

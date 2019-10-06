@@ -33,7 +33,9 @@ MIT License
 - Oracle docs
 
 ## History
-- Sprint 1 done
+### Completed Milestones
+- Sprint 1
+- Issue 1a and 1b
 
 ## Key Programming Concepts Utilized
 - Efficient and proper use of Git and Github.
@@ -42,4 +44,5 @@ MIT License
 - Connecting to a database.
 - Implementation of user functionality.
 - Use of Javadoc documentation.
+- Understanding of various types of classes, such as enum and interfaces.
 - Creating SQL statements.

@@ -33,10 +33,15 @@ public abstract class Product implements Item {
     this.type = type;
   }
 
+  /**
+   * Displays product information for testing.
+   *
+   * @return A string.
+   */
   public String toString() {
-    return "Name: " + name + "\n" +
-        "Manufacturer: " + manufacturer + "\n" +
-        "Type: " + type;
+    return "Name: " + name + "\n"
+        + "Manufacturer: " + manufacturer + "\n"
+        + "Type: " + type;
   }
 }
 

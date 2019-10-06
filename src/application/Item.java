@@ -1,9 +1,14 @@
 package application;
 
 public interface Item {
-  int getId ();
-  void setName (String name);
-  String getName ();
-  void setManufacturer (String manufacturer);
-  String getManufacturer ();
+
+  int getId();
+
+  void setName(String name);
+
+  String getName();
+
+  void setManufacturer(String manufacturer);
+
+  String getManufacturer();
 }

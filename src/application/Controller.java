@@ -108,6 +108,7 @@ public class Controller {
 
       preparedStatement.executeUpdate();
 
+      preparedStatement.close();
     } catch (SQLException e) {
       // handle errors for JDBC
       e.printStackTrace();

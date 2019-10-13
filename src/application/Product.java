@@ -7,6 +7,7 @@ public abstract class Product implements Item {
   private String manufacturer;
   private String name;
 
+
   public int getId() {
     return id;
   }
@@ -25,6 +26,14 @@ public abstract class Product implements Item {
 
   public String getManufacturer() {
     return manufacturer;
+  }
+
+  public String getType() {
+    return type;
+  }
+
+  public void setType(String type) {
+    this.type = type;
   }
 
   Product(String name, String manufacturer, String type) {

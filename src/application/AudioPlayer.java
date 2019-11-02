@@ -2,9 +2,9 @@ package application;
 
 public class AudioPlayer extends Product implements MultimediaControl {
 
-  String supportedAudioFormats;
+  private String supportedAudioFormats;
 
-  String supportedPlaylistFormats;
+  private String supportedPlaylistFormats;
 
   @Override
   public void play() {

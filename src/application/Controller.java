@@ -98,6 +98,8 @@ public class Controller {
    */
   @FXML
   void addProduct(ActionEvent event) {
+    // as an OOP approach, create a new Object that takes in each parameter and call the methods
+    // instead of using a String
     String sql = "INSERT INTO Product(type, manufacturer, name) VALUES (?, ?, ?)";
     try {
       PreparedStatement preparedStatement = conn.prepareStatement(sql);

@@ -36,6 +36,7 @@ MIT License
 ### Completed Milestones
 - Sprint 1
 - Issue 1A and 1B
+- Issue 2-6
 
 ## Key Programming Concepts Utilized
 - Efficient and proper use of Git and Github.

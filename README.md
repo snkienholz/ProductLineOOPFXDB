@@ -47,3 +47,4 @@ MIT License
 - Use of Javadoc documentation.
 - Understanding of various types of classes, such as enum and interfaces.
 - Creating SQL statements.
+- Understanding of polymorphism and encapsulation concepts.

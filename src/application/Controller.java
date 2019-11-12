@@ -30,15 +30,14 @@ import javafx.scene.layout.GridPane;
 public class Controller {
 
   private Connection conn;
+  final static String jdbcDriver = "org.h2.Driver";
+  final static String dbUrl = "jdbc:h2:./res/Product";
+
+  //  Database credentials
+  final static String user = "";
+  final static String pass = "";
 
   public void initialize() {
-
-    final String jdbcDriver = "org.h2.Driver";
-    final String dbUrl = "jdbc:h2:./res/Product";
-
-    //  Database credentials
-    final String user = "";
-    final String pass = "";
 
     try {
       Class.forName(jdbcDriver);
@@ -50,6 +49,7 @@ public class Controller {
     }
 
     setupProductLineTable();
+    addToList();
 
     // ComboBox
     for (int i = 1; i <= 10; i++) {
@@ -63,20 +63,6 @@ public class Controller {
       choiceItemType.getItems().add(String.valueOf(item));
     }
 
-    // ListView
-    try {
-      Statement stmt = conn.createStatement();
-      ResultSet rs = stmt.executeQuery("SELECT 'NAME' FROM PRODUCT");
-
-      while (rs.next()) {
-        String name = rs.getString(1);
-        String manufacturer = rs.getString(2);
-        String type = rs.getString(3);
-        //listViewProduct.getItems(new Widget(name, manufacturer, type));
-      }
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
   }
 
   @FXML
@@ -103,7 +89,7 @@ public class Controller {
 
   // List View showing all existing products
   @FXML
-  private ListView<Product> listViewProduct;
+  private ListView<String> listViewProduct;
 
   // Table View and columns of the existing products under Product Line tab
   @FXML
@@ -150,6 +136,8 @@ public class Controller {
       // handle errors for JDBC
       e.printStackTrace();
     }
+
+    initialize();
   }
 
   public void setupProductLineTable() {
@@ -172,6 +160,37 @@ public class Controller {
       }
 
     } catch (SQLException e){
+      e.printStackTrace();
+    }
+  }
+
+  /**
+   *
+   */
+  public void addToList() {
+
+    try {
+      Statement stmt = conn.createStatement();
+      ResultSet rs = stmt.executeQuery("SELECT NAME FROM PRODUCT");
+
+      /* while (rs.next()){
+
+        String product = rs.getString("NAME");
+        listViewProduct.getItems().addAll(product);
+        initialize();
+      } */
+
+      while (rs.next()) {
+        String productName = rs.getString("NAME");
+
+        if (listViewProduct.getItems().contains(productName)) {
+          System.out.println("");
+        } else {
+          listViewProduct.getItems().addAll(productName);
+          initialize();
+        }
+      }
+    } catch (SQLException e) {
       e.printStackTrace();
     }
   }

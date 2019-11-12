@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane alignment="center" hgap="10" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="750.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+<GridPane alignment="center" hgap="10" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="750.0" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
   <columnConstraints>
     <ColumnConstraints />
   </columnConstraints>
@@ -65,10 +65,11 @@
                 <Button fx:id="btnAddProduct" layoutX="517.0" layoutY="246.0" mnemonicParsing="false" onAction="#addProduct" text="Add Product" />
                 <AnchorPane fx:id="tblExistingProducts" layoutX="58.0" layoutY="296.0" prefHeight="252.0" prefWidth="635.0">
                   <children>
-                    <TableView layoutX="62.0" layoutY="26.0" prefHeight="200.0" prefWidth="512.0">
+                    <TableView fx:id="tvProducts" layoutX="62.0" layoutY="26.0" prefHeight="200.0" prefWidth="512.0">
                       <columns>
-                        <TableColumn prefWidth="75.0" text="C1" />
-                        <TableColumn prefWidth="75.0" text="C2" />
+                        <TableColumn fx:id="colProductName" prefWidth="178.0" text="Name" />
+                        <TableColumn fx:id="colManufacturer" prefWidth="209.0" text="Manufacturer" />
+                                    <TableColumn fx:id="colItemType" prefWidth="124.0" text="Type" />
                       </columns>
                     </TableView>
                     <Label layoutX="62.0" layoutY="4.0" text="Existing Products" />

@@ -26,7 +26,7 @@ public class Main extends Application {
 
   public static void main(String[] args) {
     launch(args);
-    // test constructor used when creating production records from user interface
+    /*// test constructor used when creating production records from user interface
     Integer numProduced = 3;  // this will come from the combobox in the UI
 
     for (int productionRunProduct = 0; productionRunProduct < numProduced; productionRunProduct++) {
@@ -50,6 +50,6 @@ public class Main extends Application {
 
     pr.setDateProduced(new Date());
     System.out.println(pr.getDateProduced());
-
+*/
   }
 }

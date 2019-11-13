@@ -3,10 +3,9 @@ package application;
 public abstract class Product implements Item {
 
   private int id;
-  private String type;
+  private ItemType type;
   private String manufacturer;
   private String name;
-
 
   public int getId() {
     return id;
@@ -28,15 +27,15 @@ public abstract class Product implements Item {
     return manufacturer;
   }
 
-  public String getType() {
+  public ItemType getType() {
     return type;
   }
 
-  public void setType(String type) {
+  public void setType(ItemType type) {
     this.type = type;
   }
 
-  Product(String name, String manufacturer, String type) {
+  Product(String name, String manufacturer, ItemType type) {
     this.name = name;
     this.manufacturer = manufacturer;
     this.type = type;
@@ -50,7 +49,7 @@ public abstract class Product implements Item {
   public String toString() {
     return "Name: " + name + "\n"
         + "Manufacturer: " + manufacturer + "\n"
-        + "Type: " + type;
+        + "Type: " + type.code;
   }
 }
 

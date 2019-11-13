@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -84,6 +85,9 @@ public class Controller {
 
   @FXML
   private TextField txtManufacturer;
+
+  @FXML
+  private TextArea txtAreaProdLog;
 
   @FXML
   private ChoiceBox<String> choiceItemType;

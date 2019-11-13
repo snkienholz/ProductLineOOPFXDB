@@ -3,15 +3,22 @@ package application;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
@@ -24,9 +31,6 @@ public class Controller {
 
   private Connection conn;
 
-  /**
-   * Initializing connection to database.
-   */
   public void initialize() {
 
     final String jdbcDriver = "org.h2.Driver";
@@ -45,6 +49,8 @@ public class Controller {
       e.printStackTrace();
     }
 
+    setupProductLineTable();
+
     // ComboBox
     for (int i = 1; i <= 10; i++) {
       cboQuantity.getItems().add(i);
@@ -56,6 +62,21 @@ public class Controller {
     for (ItemType item : ItemType.values()) {
       choiceItemType.getItems().add(String.valueOf(item));
     }
+
+    // ListView
+    try {
+      Statement stmt = conn.createStatement();
+      ResultSet rs = stmt.executeQuery("SELECT 'NAME' FROM PRODUCT");
+
+      while (rs.next()) {
+        String name = rs.getString(1);
+        String manufacturer = rs.getString(2);
+        String type = rs.getString(3);
+        //listViewProduct.getItems(new Widget(name, manufacturer, type));
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
   }
 
   @FXML
@@ -66,28 +87,34 @@ public class Controller {
 
   @FXML
   private Button btnAddProduct;
-
   @FXML
   private Button btnRecordProduction;
 
   @FXML
-  private Tab productLine;
-
-  @FXML
   private Tab produce;
-
   @FXML
   private Tab productionLog;
 
   // Product Line text fields
   @FXML
   private TextField txtProductName;
-
   @FXML
   private TextField txtManufacturer;
 
+  // List View showing all existing products
   @FXML
-  private TextArea txtAreaProdLog;
+  private ListView<Product> listViewProduct;
+
+  // Table View and columns of the existing products under Product Line tab
+  @FXML
+  private TableView<Product> tvProducts;
+
+  @FXML
+  private TableColumn<?, ?> colProductName;
+  @FXML
+  private TableColumn<?, ?> colManufacturer;
+  @FXML
+  private TableColumn<?, ?> colItemType;
 
   @FXML
   private ChoiceBox<String> choiceItemType;
@@ -95,16 +122,20 @@ public class Controller {
   @FXML
   private ComboBox<Integer> cboQuantity;
 
+  // creating an ObservableList of products for the Product Line tab
+  ObservableList<Product> productLine = FXCollections.observableArrayList();
+
   /**
    * Allows user to add products and stores them in the database.
    *
    * @param event Event handler from Scene Builder.
    */
   @FXML
-  void addProduct(ActionEvent event) {
+  void addProduct(ActionEvent event) throws SQLException {
     // as an OOP approach, create a new Object that takes in each parameter and call the methods
     // instead of using a String
     String sql = "INSERT INTO Product(type, manufacturer, name) VALUES (?, ?, ?)";
+
     try {
       PreparedStatement preparedStatement = conn.prepareStatement(sql);
 
@@ -113,10 +144,34 @@ public class Controller {
       preparedStatement.setString(3, txtProductName.getText());
 
       preparedStatement.executeUpdate();
-
       preparedStatement.close();
+
     } catch (SQLException e) {
       // handle errors for JDBC
+      e.printStackTrace();
+    }
+  }
+
+  public void setupProductLineTable() {
+
+    try {
+      Statement stmt = conn.createStatement();
+      ResultSet rs = stmt.executeQuery("SELECT * FROM PRODUCT");
+
+      colProductName.setCellValueFactory(new PropertyValueFactory<>("name"));
+      colManufacturer.setCellValueFactory(new PropertyValueFactory<>("manufacturer"));
+      colItemType.setCellValueFactory(new PropertyValueFactory<>("type"));
+
+      tvProducts.setItems(productLine);
+
+      while (rs.next()) {
+        String name = rs.getString("Name");
+        String manufacturer = rs.getString("Manufacturer");
+        String type = rs.getString("Type");
+        productLine.add(new Widget(name, manufacturer, type));
+      }
+
+    } catch (SQLException e){
       e.printStackTrace();
     }
   }

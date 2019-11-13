@@ -136,8 +136,8 @@ public class Controller {
       // handle errors for JDBC
       e.printStackTrace();
     }
-
-    initialize();
+    setupProductLineTable();
+    addToList();
   }
 
   public void setupProductLineTable() {
@@ -173,21 +173,11 @@ public class Controller {
       Statement stmt = conn.createStatement();
       ResultSet rs = stmt.executeQuery("SELECT NAME FROM PRODUCT");
 
-      /* while (rs.next()){
-
-        String product = rs.getString("NAME");
-        listViewProduct.getItems().addAll(product);
-        initialize();
-      } */
-
       while (rs.next()) {
         String productName = rs.getString("NAME");
 
-        if (listViewProduct.getItems().contains(productName)) {
-          System.out.println("");
-        } else {
+        if (!listViewProduct.getItems().contains(productName)) {
           listViewProduct.getItems().addAll(productName);
-          initialize();
         }
       }
     } catch (SQLException e) {

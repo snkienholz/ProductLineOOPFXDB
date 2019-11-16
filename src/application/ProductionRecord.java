@@ -63,7 +63,7 @@ public class ProductionRecord {
   public ProductionRecord(Product product, int itemCount) {
     this (product.getId());
     setSerialNumber(product.getManufacturer().substring(0, 3)
-        + product.getType().code
+        + product.getType()
         + "00000".substring(0, 5 - (Integer.toString(itemCount).length()))
         + itemCount);
 

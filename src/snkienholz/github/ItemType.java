@@ -1,6 +1,9 @@
-package application;
+package snkienholz.github;
 
-// Item pre-set types under Product Line tab
+/**
+ * Item pre-set types under Product Line tab.
+ */
+
 public enum ItemType {
   Audio("AU"),
   Visual("VI"),

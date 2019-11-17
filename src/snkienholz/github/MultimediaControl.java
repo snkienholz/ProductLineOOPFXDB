@@ -1,4 +1,4 @@
-package application;
+package snkienholz.github;
 
 public interface MultimediaControl {
 

@@ -1,11 +1,10 @@
-package application;
+package snkienholz.github;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import java.util.Date;
 
 /**
  * Main application file. Sets up scene and launches FX application.

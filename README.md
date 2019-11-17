@@ -12,7 +12,8 @@ TBA . . .
 ![Database Diagram](https://i.imgur.com/QeIURG4.png)
 
 ## Getting Started
-TBA . . .
+In the Product Line tab, enter a product name, manufacturer, and select an appropriate type for it. Click Add Product to add it to 
+the table.
 
 ## Built With
 - IntelliJ IDEA Ultimate Edition 2019.2.1

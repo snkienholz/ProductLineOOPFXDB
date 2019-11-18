@@ -1,4 +1,8 @@
-package application;
+package snkienholz.github;
+
+/**
+ * Defines a product with a name, manufacturer, product type, and ID.
+ */
 
 public abstract class Product implements Item {
 
@@ -6,7 +10,6 @@ public abstract class Product implements Item {
   private String type;
   private String manufacturer;
   private String name;
-
 
   public int getId() {
     return id;
@@ -54,8 +57,12 @@ public abstract class Product implements Item {
   }
 }
 
+/**
+ * Subclass used to allow use of the Product constructor.
+ */
 class Widget extends Product {
-  public Widget (String name, String manufacturer, String type) {
+
+  public Widget(String name, String manufacturer, String type) {
     super(name, manufacturer, type);
   }
 }

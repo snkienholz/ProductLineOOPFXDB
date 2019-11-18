@@ -8,10 +8,12 @@ TBA . . .
 TBA . . .
 
 ## Diagrams
-![Class Diagram](https://i.imgur.com/fSGqiKB.png)
+![Class Diagram](https://i.imgur.com/Ig3UXFv.png)
+![Database Diagram](https://i.imgur.com/QeIURG4.png)
 
 ## Getting Started
-TBA . . .
+In the Product Line tab, enter a product name, manufacturer, and select an appropriate type for it. Click Add Product to add it to 
+the table.
 
 ## Built With
 - IntelliJ IDEA Ultimate Edition 2019.2.1
@@ -36,7 +38,7 @@ MIT License
 ### Completed Milestones
 - Sprint 1
 - Issue 1A and 1B
-- Issue 2-6
+- Issue 2-5
 
 ## Key Programming Concepts Utilized
 - Efficient and proper use of Git and Github.
@@ -48,3 +50,4 @@ MIT License
 - Understanding of various types of classes, such as enum and interfaces.
 - Creating SQL statements.
 - Understanding of polymorphism and encapsulation concepts.
+- UI interaction.

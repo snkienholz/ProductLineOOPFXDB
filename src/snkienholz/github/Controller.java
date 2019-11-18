@@ -1,4 +1,4 @@
-package application;
+package snkienholz.github;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -23,22 +23,25 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
 /**
- * Full application controller.
+ * Controller for the application that enables UI interaction and uses data from the PRODUCT
+ * database.
  *
  * @author Sabrina
  */
 public class Controller {
 
   private Connection conn;
+  static final String jdbcDriver = "org.h2.Driver";
+  static final String dbUrl = "jdbc:h2:./res/Product";
 
+  //  Database credentials
+  static final String user = "";
+  static final String pass = "";
+
+  /**
+   * Initializes the application with UI interaction.
+   */
   public void initialize() {
-
-    final String jdbcDriver = "org.h2.Driver";
-    final String dbUrl = "jdbc:h2:./res/Product";
-
-    //  Database credentials
-    final String user = "";
-    final String pass = "";
 
     try {
       Class.forName(jdbcDriver);
@@ -49,7 +52,9 @@ public class Controller {
       e.printStackTrace();
     }
 
+    // set up the product line table and add its values to the list in the Produce tab
     setupProductLineTable();
+    addToList();
 
     // ComboBox
     for (int i = 1; i <= 10; i++) {
@@ -63,20 +68,6 @@ public class Controller {
       choiceItemType.getItems().add(String.valueOf(item));
     }
 
-    // ListView
-    try {
-      Statement stmt = conn.createStatement();
-      ResultSet rs = stmt.executeQuery("SELECT 'NAME' FROM PRODUCT");
-
-      while (rs.next()) {
-        String name = rs.getString(1);
-        String manufacturer = rs.getString(2);
-        String type = rs.getString(3);
-        //listViewProduct.getItems(new Widget(name, manufacturer, type));
-      }
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
   }
 
   @FXML
@@ -103,7 +94,7 @@ public class Controller {
 
   // List View showing all existing products
   @FXML
-  private ListView<Product> listViewProduct;
+  private ListView<String> listViewProduct;
 
   // Table View and columns of the existing products under Product Line tab
   @FXML
@@ -116,9 +107,11 @@ public class Controller {
   @FXML
   private TableColumn<?, ?> colItemType;
 
+  // drop down list to select the product type
   @FXML
   private ChoiceBox<String> choiceItemType;
 
+  // drop down list to select the quantity of products from the List View to be produced
   @FXML
   private ComboBox<Integer> cboQuantity;
 
@@ -132,8 +125,7 @@ public class Controller {
    */
   @FXML
   void addProduct(ActionEvent event) throws SQLException {
-    // as an OOP approach, create a new Object that takes in each parameter and call the methods
-    // instead of using a String
+
     String sql = "INSERT INTO Product(type, manufacturer, name) VALUES (?, ?, ?)";
 
     try {
@@ -150,33 +142,78 @@ public class Controller {
       // handle errors for JDBC
       e.printStackTrace();
     }
+
+    /* the table is set up with the new product as a new one is added, and the List View in the
+    Produce tab gets updated with the name of the added product */
+    setupProductLineTable();
+    addToList();
   }
 
+  /**
+   * Sets up and populates the Table View in the Product Line tab of the application.
+   */
   public void setupProductLineTable() {
+
+    colProductName.setCellValueFactory(new PropertyValueFactory<>("name"));
+    colManufacturer.setCellValueFactory(new PropertyValueFactory<>("manufacturer"));
+    colItemType.setCellValueFactory(new PropertyValueFactory<>("type"));
+
+    tvProducts.setItems(productLine);
 
     try {
       Statement stmt = conn.createStatement();
       ResultSet rs = stmt.executeQuery("SELECT * FROM PRODUCT");
 
-      colProductName.setCellValueFactory(new PropertyValueFactory<>("name"));
-      colManufacturer.setCellValueFactory(new PropertyValueFactory<>("manufacturer"));
-      colItemType.setCellValueFactory(new PropertyValueFactory<>("type"));
-
-      tvProducts.setItems(productLine);
-
       while (rs.next()) {
         String name = rs.getString("Name");
         String manufacturer = rs.getString("Manufacturer");
         String type = rs.getString("Type");
+
+        // Widget extends the abstract class Product, and used to add products to the table
         productLine.add(new Widget(name, manufacturer, type));
       }
 
-    } catch (SQLException e){
+      stmt.close();
+    } catch (SQLException e) {
       e.printStackTrace();
     }
   }
 
+  /**
+   * Populates the List View in the Produce tab of the application with data from the Product Line
+   * tab's table.
+   */
+  public void addToList() {
+
+    try {
+      Statement stmt = conn.createStatement();
+      ResultSet rs = stmt.executeQuery("SELECT NAME FROM PRODUCT");
+
+      while (rs.next()) {
+        // only including the product name in the list
+        String productName = rs.getString("NAME");
+
+        // if the product is not already displayed, add the product to the List View
+        if (!listViewProduct.getItems().contains(productName)) {
+          listViewProduct.getItems().addAll(productName);
+        }
+      }
+
+      stmt.close();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+
+  /**
+   * Records a log for every product to be produced when the Record Production button gets pressed.
+   *
+   * @param event - button is pressed
+   */
   @FXML
   void recordProduction(ActionEvent event) {
+
+    // creating a log out of a selected product and selected quantity
+    //ProductionRecord log = new ProductionRecord(, cboQuantity.getValue());
   }
 }

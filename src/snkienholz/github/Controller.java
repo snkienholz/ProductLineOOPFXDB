@@ -1,11 +1,15 @@
 package snkienholz.github;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
+import java.io.FileInputStream;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -31,12 +35,6 @@ import javafx.scene.layout.GridPane;
 public class Controller {
 
   private Connection conn;
-  static final String jdbcDriver = "org.h2.Driver";
-  static final String dbUrl = "jdbc:h2:./res/Product";
-
-  //  Database credentials
-  static final String user = "";
-  static final String pass = "";
 
   /**
    * Initializes the application with UI interaction.
@@ -44,17 +42,25 @@ public class Controller {
   public void initialize() {
 
     try {
+      final String jdbcDriver = "org.h2.Driver";
+      final String dbUrl = "jdbc:h2:./res/Product";
+
+      //  Database credentials
+      final String user = "";
+      Properties prop = new Properties();
+      prop.load(new FileInputStream("res/properties"));
+      String pass = prop.getProperty("password");
+
       Class.forName(jdbcDriver);
 
       conn = DriverManager.getConnection(dbUrl, user, pass);
 
-    } catch (ClassNotFoundException | SQLException e) {
+    } catch (ClassNotFoundException | SQLException | IOException e) {
       e.printStackTrace();
     }
 
     // set up the product line table and add its values to the list in the Produce tab
     setupProductLineTable();
-    addToList();
 
     // ComboBox
     for (int i = 1; i <= 10; i++) {
@@ -68,7 +74,12 @@ public class Controller {
       choiceItemType.getItems().add(String.valueOf(item));
     }
 
+    listViewProduct.setItems(productLine);
+
   }
+
+  // creating an ObservableList of products for the Product Line tab
+  ObservableList<Product> productLine = FXCollections.observableArrayList();
 
   @FXML
   private GridPane productLineInfo;
@@ -94,7 +105,8 @@ public class Controller {
 
   // List View showing all existing products
   @FXML
-  private ListView<String> listViewProduct;
+  //private ListView<Product> listViewProduct = new ListView<>(productLine);
+  private ListView<Product> listViewProduct;
 
   // Table View and columns of the existing products under Product Line tab
   @FXML
@@ -115,8 +127,6 @@ public class Controller {
   @FXML
   private ComboBox<Integer> cboQuantity;
 
-  // creating an ObservableList of products for the Product Line tab
-  ObservableList<Product> productLine = FXCollections.observableArrayList();
 
   /**
    * Allows user to add products and stores them in the database.
@@ -146,7 +156,6 @@ public class Controller {
     /* the table is set up with the new product as a new one is added, and the List View in the
     Produce tab gets updated with the name of the added product */
     setupProductLineTable();
-    addToList();
   }
 
   /**
@@ -171,32 +180,6 @@ public class Controller {
 
         // Widget extends the abstract class Product, and used to add products to the table
         productLine.add(new Widget(name, manufacturer, type));
-      }
-
-      stmt.close();
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
-  }
-
-  /**
-   * Populates the List View in the Produce tab of the application with data from the Product Line
-   * tab's table.
-   */
-  public void addToList() {
-
-    try {
-      Statement stmt = conn.createStatement();
-      ResultSet rs = stmt.executeQuery("SELECT NAME FROM PRODUCT");
-
-      while (rs.next()) {
-        // only including the product name in the list
-        String productName = rs.getString("NAME");
-
-        // if the product is not already displayed, add the product to the List View
-        if (!listViewProduct.getItems().contains(productName)) {
-          listViewProduct.getItems().addAll(productName);
-        }
       }
 
       stmt.close();

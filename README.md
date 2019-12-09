@@ -14,7 +14,7 @@
 
 ## Getting Started
 ### How to Run
-Have the latest version of IntelliJ IDEA Ultimate with JDK 8 installed, and copy the repo zip file.
+Have the latest version of IntelliJ IDEA Ultimate with JDK 8 installed, and download the repo zip file.
 
 ### How to Use
 In the Product Line tab, enter a product name, manufacturer, and select an appropriate type for it. Click Add Product to add it to 

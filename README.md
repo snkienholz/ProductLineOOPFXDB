@@ -7,13 +7,6 @@ Download the latest version from the releases and have Java installed on your co
 ### How to Build
 Have the latest version of IntelliJ IDEA Ultimate with JDK 8 installed, and download the repo zip file.
 
-### How to Use
-In the Product Line tab, enter a product name, manufacturer, and select an appropriate type for it. Click Add Product to add it to 
-the table.
-
-Select a product and quantity in the Produce tab and view the produced products in the Production Log tab.
-
-Enter an employee name and a password in the Employee tab to check their credentials.
 
 ## Demonstration
 ![Demonstration](https://i.imgur.com/Vl2FUC4.gif)

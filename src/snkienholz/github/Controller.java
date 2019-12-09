@@ -22,6 +22,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
@@ -101,6 +102,9 @@ public class Controller {
   private Button btnAddProduct;
   @FXML
   private Button btnRecordProduction;
+
+  @FXML
+  private Label lblInvalidPassword;
 
   @FXML
   private Tab produce;
@@ -346,9 +350,21 @@ public class Controller {
 
     Employee e = new Employee(txtEmployeeName.getText(), txtPassword.getText());
 
-    confirmation.setContentText(e.toString() + "\n" + "Reversed Password: "
-        + e.reverseString(txtPassword.getText()));
+    if (txtEmployeeName.getText().isEmpty() || txtPassword.getText().isEmpty()){
 
-    confirmation.show();
+      lblInvalidPassword.setText("Please fill out all fields.");
+    } else if (!e.isValidPassword(txtPassword.getText())) {
+
+      lblInvalidPassword.setText("Invalid password. \nMust contain at least one lowercase, "
+          + "one uppercase, and one special character. \nPlease try again." );
+    } else {
+      lblInvalidPassword.setText("");
+
+      confirmation.setContentText(e.toString() + "\n" + "Reversed Password: "
+          + e.reverseString(txtPassword.getText()));
+
+      confirmation.show();
+    }
+
   }
 }

@@ -77,7 +77,7 @@ public class Employee {
    * character.
    * @return - returns true if password passes above stated criteria
    */
-  private boolean isValidPassword(String password) {
+  public boolean isValidPassword(String password) {
 
     // regex pattern including uppercase, lowercase, special, and at least 3 characters
     String pattern = "(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[#?!@$%^&*-]).{3,}";

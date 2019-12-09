@@ -66,14 +66,14 @@
                 <Button fx:id="btnAddProduct" layoutX="517.0" layoutY="246.0" mnemonicParsing="false" onAction="#addProduct" text="Add Product" />
                 <AnchorPane fx:id="tblExistingProducts" layoutX="58.0" layoutY="296.0" prefHeight="252.0" prefWidth="635.0">
                   <children>
-                    <TableView fx:id="tvProducts" layoutX="62.0" layoutY="26.0" prefHeight="200.0" prefWidth="512.0">
+                    <TableView fx:id="tvProducts" layoutX="3.0" layoutY="26.0" prefHeight="200.0" prefWidth="626.0">
                       <columns>
-                        <TableColumn fx:id="colProductName" prefWidth="178.0" text="Name" />
-                        <TableColumn fx:id="colManufacturer" prefWidth="209.0" text="Manufacturer" />
-                                    <TableColumn fx:id="colItemType" prefWidth="124.0" text="Type" />
+                        <TableColumn fx:id="colProductName" prefWidth="200.0" text="Name" />
+                        <TableColumn fx:id="colManufacturer" prefWidth="292.0" text="Manufacturer" />
+                                    <TableColumn fx:id="colItemType" prefWidth="133.0" text="Type" />
                       </columns>
                     </TableView>
-                    <Label layoutX="62.0" layoutY="4.0" text="Existing Products" />
+                    <Label layoutX="14.0" layoutY="4.0" text="Existing Products" />
                   </children>
                 </AnchorPane>
               </children>
@@ -124,6 +124,7 @@
                         </GridPane>
                         <Button fx:id="btnConfirm" layoutX="351.0" layoutY="270.0" mnemonicParsing="false" onAction="#confirmCredentials" text="Confirm Credentials" />
                         <Label layoutX="68.0" layoutY="87.0" prefHeight="42.0" prefWidth="617.0" style="-fx-font-size: 30;" styleClass="employeePrompt" text="Please Confirm Your Employee Credentials" />
+                        <Label fx:id="lblInvalidPassword" layoutX="70.0" layoutY="318.0" prefHeight="83.0" prefWidth="614.0" />
                      </children>
                   </AnchorPane>
               </content>

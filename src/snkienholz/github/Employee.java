@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 /**
  * Allows the user to input their full name and then create a user id of their first name, surname,
- * and an email address of their first initial and last name
+ * and an email address of their first initial and last name.
  */
 public class Employee {
 
@@ -14,6 +14,12 @@ public class Employee {
   String password;
   String email;
 
+  /**
+   * Constructor accepting an employee name and password.
+   * Checks and formats their credentials.
+   * @param name - user-entered name
+   * @param password - user-entered password
+   */
   public Employee(String name, String password) {
     this.name = new StringBuilder(name);
 
@@ -34,6 +40,7 @@ public class Employee {
 
   /**
    * Formats the employee's name to a username ex.(Name: John Doe Username: jdoe)
+   *
    * @param name - name entered by employee
    */
   private void setUsername(String name) {
@@ -45,6 +52,7 @@ public class Employee {
 
   /**
    * Formats the employee's name to an email address ex.(john.doe@oracleacademy.Test)
+   *
    * @param name - name entered by employee
    */
   private void setEmail(String name) {
@@ -65,8 +73,8 @@ public class Employee {
   }
 
   /**
-   * Checks for a valid password, containing a lowercase and an uppercase letter, and
-   * a special character
+   * Checks for a valid password, containing a lowercase and an uppercase letter, and a special
+   * character.
    * @return - returns true if password passes above stated criteria
    */
   private boolean isValidPassword(String password) {
@@ -82,7 +90,7 @@ public class Employee {
   }
 
   /**
-   * Reverses saved password for security regulations
+   * Reverses saved password for security regulations.
    * @param pw - user-entered password
    * @return - reversed password
    */

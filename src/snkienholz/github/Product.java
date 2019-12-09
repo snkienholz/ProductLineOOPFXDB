@@ -46,7 +46,7 @@ public abstract class Product implements Item {
     this.type = type;
   }
 
-  Product( String name, String manufacturer, String type) {
+  Product(String name, String manufacturer, String type) {
     this.name = name;
     this.manufacturer = manufacturer;
     this.type = type;
@@ -61,16 +61,6 @@ public abstract class Product implements Item {
     return "Name: " + name + "\n"
         + "Manufacturer: " + manufacturer + "\n"
         + "Type: " + type;
-  }
-}
-
-/**
- * Subclass used to allow use of the Product constructor.
- */
-class Widget extends Product {
-
-  public Widget(int id, String name, String manufacturer, String type) {
-    super(id, name, manufacturer, type);
   }
 }
 

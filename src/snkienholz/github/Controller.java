@@ -1,5 +1,6 @@
 package snkienholz.github;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,7 +13,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Properties;
-import java.io.FileInputStream;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -247,7 +247,8 @@ public class Controller {
   void addToProductionDB() {
 
     try {
-      String sql = "INSERT INTO PRODUCTIONRECORD(PRODUCT_ID, SERIAL_NUM, DATE_PRODUCED) VALUES (?, ?, ?)";
+      String sql = "INSERT INTO PRODUCTIONRECORD(PRODUCT_ID, SERIAL_NUM, DATE_PRODUCED) "
+          + "VALUES (?, ?, ?)";
       PreparedStatement preparedStatement = conn.prepareStatement(sql);
 
       // inserting ArrayList productionRun information into PRODUCTIONRECORD table

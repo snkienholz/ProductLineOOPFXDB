@@ -77,6 +77,9 @@ public class ProductionRecord {
   /**
    * Overloaded constructor to accept a Product and an int for the number of items of
    * the Product type.
+   *
+   * Creates a SERIAL_NUM
+   *
    * @param product - product being produced
    * @param itemCount - quantity of the product being produced
    */
@@ -86,7 +89,6 @@ public class ProductionRecord {
         + product.getType()
         + "00000".substring(0, 5 - (Integer.toString(itemCount).length()))
         + itemCount);
-
   }
 
   /**

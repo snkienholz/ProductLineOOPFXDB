@@ -1,19 +1,10 @@
 # ProductLineOOPFXDB
 
-
-## Demonstration
-![Demonstration](https://i.imgur.com/Vl2FUC4.gif)
-
-## Documentation
-[Javadoc](https://snkienholz.github.io/ProductLineOOPFXDB/)
-
-## Diagrams
-![Class Diagram](https://imgur.com/OU2yeDe.png)
-![Database Diagram](https://imgur.com/LR4KbEh.png)
-![Database Diagram](https://imgur.com/wiZ7SMB.png)
-
 ## Getting Started
 ### How to Run
+Download the latest version from the releases and have Java installed on your computer. Run the JAR file.
+
+### How to Build
 Have the latest version of IntelliJ IDEA Ultimate with JDK 8 installed, and download the repo zip file.
 
 ### How to Use
@@ -23,6 +14,17 @@ the table.
 Select a product and quantity in the Produce tab and view the produced products in the Production Log tab.
 
 Enter an employee name and a password in the Employee tab to check their credentials.
+
+## Demonstration
+![Demonstration](https://i.imgur.com/Vl2FUC4.gif)
+
+## Diagrams
+![Class Diagram](https://imgur.com/OU2yeDe.png)
+![Database Diagram](https://imgur.com/LR4KbEh.png)
+![Database Diagram](https://imgur.com/wiZ7SMB.png)
+
+## Documentation
+[Javadoc](https://snkienholz.github.io/ProductLineOOPFXDB/)
 
 ## Built With
 - IntelliJ IDEA Ultimate Edition 2019.2.1

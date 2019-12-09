@@ -8,8 +8,9 @@ TBA . . .
 TBA . . .
 
 ## Diagrams
-![Class Diagram](https://i.imgur.com/Ig3UXFv.png)
-![Database Diagram](https://i.imgur.com/QeIURG4.png)
+![Class Diagram](https://imgur.com/OU2yeDe.png)
+![Database Diagram](https://imgur.com/LR4KbEh.png)
+![Database Diagram](https://imgur.com/wiZ7SMB.png)
 
 ## Getting Started
 In the Product Line tab, enter a product name, manufacturer, and select an appropriate type for it. Click Add Product to add it to 

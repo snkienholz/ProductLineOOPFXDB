@@ -76,6 +76,7 @@ public class Employee {
    * Checks for a valid password, containing a lowercase and an uppercase letter, and a special
    * character.
    * @return - returns true if password passes above stated criteria
+   * @param password - user-entered password
    */
   public boolean isValidPassword(String password) {
 

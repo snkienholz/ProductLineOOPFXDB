@@ -37,10 +37,12 @@ MIT License
 
 ## History
 ### Completed Milestones
-- Sprint 1
-- Issue 1A and 1B
-- Issue 2-5
-- Issue 6-10
+- Sprint 1 (Alpha)
+- Sprint 2 (Beta)
+  - Issue 1A and 1B
+  - Issue 2-6
+- Sprint 3 (Release)
+  - Issue 7-10
 
 ## Key Programming Concepts Utilized
 - Efficient and proper use of Git and Github.

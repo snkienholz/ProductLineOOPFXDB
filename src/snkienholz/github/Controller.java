@@ -103,13 +103,17 @@ public class Controller {
   @FXML
   private Button btnRecordProduction;
 
+  // Error handling elements
   @FXML
-  private Label lblInvalidPassword;
+  private Label lblProductLineError;
+  @FXML
+  private Label lblProduceError;
+  @FXML
+  private Label lblEmployeeStatus;
+
 
   @FXML
   private Tab produce;
-  //@FXML
-  //private Tab productionLog;
 
   @FXML
   private TextArea txtAreaProdLog;
@@ -155,7 +159,6 @@ public class Controller {
 
   /**
    * Allows user to add products and stores them in the database.
-   *
    * @param event Event handler from Scene Builder.
    */
   @FXML
@@ -170,7 +173,13 @@ public class Controller {
       preparedStatement.setString(2, txtManufacturer.getText());
       preparedStatement.setString(3, txtProductName.getText());
 
-      preparedStatement.executeUpdate();
+      if (txtProductName.getText().isEmpty() || txtManufacturer.getText().isEmpty()
+          || choiceItemType.getValue().isEmpty()) {
+        lblProductLineError.setText("Please fill out all fields.");
+      } else {
+        lblProductLineError.setText("");
+        preparedStatement.executeUpdate();
+      }
       preparedStatement.close();
 
     } catch (SQLException e) {
@@ -229,17 +238,21 @@ public class Controller {
     // clearing ArrayList before adding new products
     productionRun.clear();
 
-    // creating a new ProductionRecord object with first ProductionRecord constructor
-    for (int i = 0; i < selectedQuantity; i++) {
-      ProductionRecord pr = new ProductionRecord(selectedProduct, selectedQuantity);
+    if (listViewProduct.getSelectionModel().isEmpty() || cboQuantity.getValue().isEmpty()) {
+      lblProduceError.setText("Please select a product and quantity before recording production.");
+    } else {
+      lblProduceError.setText("");
+      // creating a new ProductionRecord object with first ProductionRecord constructor
+      for (int i = 0; i < selectedQuantity; i++) {
+        ProductionRecord pr = new ProductionRecord(selectedProduct, selectedQuantity);
 
-      // setting product ID (name), serial number, & date produced
-      pr.setProductID(selectedProduct.getId());
+        // setting product ID (name), serial number, & date produced
+        pr.setProductID(selectedProduct.getId());
 
-      // populating ArrayList with object
-      productionRun.add(pr);
+        // populating ArrayList with object
+        productionRun.add(pr);
+      }
     }
-
     addToProductionDB();
     loadProductionLog();
   }
@@ -352,19 +365,21 @@ public class Controller {
 
     if (txtEmployeeName.getText().isEmpty() || txtPassword.getText().isEmpty()){
 
-      lblInvalidPassword.setText("Please fill out all fields.");
+      lblEmployeeStatus.setText("Please fill out all fields.");
     } else if (!e.isValidPassword(txtPassword.getText())) {
 
-      lblInvalidPassword.setText("Invalid password. \nMust contain at least one lowercase, "
-          + "one uppercase, and one special character. \nPlease try again." );
+      lblEmployeeStatus.setText("Invalid password. \nPassword must contain at least one lowercase, "
+          + "\none uppercase, and one special character. \nPlease try again." );
     } else {
-      lblInvalidPassword.setText("");
+      lblEmployeeStatus.setText("");
 
       confirmation.setContentText(e.toString() + "\n" + "Reversed Password: "
           + e.reverseString(txtPassword.getText()));
 
-      confirmation.show();
-    }
+      // shows the Alert popup and waits until it is closed to proceed
+      confirmation.showAndWait();
 
+      lblEmployeeStatus.setText("Your employee credentials have been registered!");
+    }
   }
 }

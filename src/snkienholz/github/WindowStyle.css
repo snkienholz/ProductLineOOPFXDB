@@ -2,6 +2,10 @@
   -fx-font-family: Arial;
 }
 
+.employeePrompt{
+  -fx-font-size: 36px;
+}
+
 .tab-header-background {
   -fx-background-color: #001c31;
 }

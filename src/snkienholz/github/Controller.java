@@ -1,8 +1,6 @@
 package snkienholz.github;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.sql.Array;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -19,6 +17,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
@@ -31,7 +31,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javax.swing.plaf.nimbus.State;
 
 /**
  * Controller for the application that enables UI interaction and uses data from the PRODUCT
@@ -116,6 +115,15 @@ public class Controller {
   private TextField txtProductName;
   @FXML
   private TextField txtManufacturer;
+
+  // Employee tab text fields
+  @FXML
+  private TextField txtEmployeeName;
+  @FXML
+  private TextField txtPassword;
+
+  @FXML
+  private Button btnConfirm;
 
   // List View showing all existing products
   @FXML
@@ -328,5 +336,18 @@ public class Controller {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+  }
+
+  @FXML
+  void confirmCredentials(ActionEvent event) {
+
+    Alert confirmation = new Alert(AlertType.INFORMATION);
+
+    Employee e = new Employee(txtEmployeeName.getText(), txtPassword.getText());
+
+    confirmation.setContentText(e.toString() + "\n" + "Reversed Password: "
+        + e.reverseString(txtPassword.getText()));
+
+    confirmation.show();
   }
 }
